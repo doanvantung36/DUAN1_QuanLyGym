@@ -12,7 +12,7 @@ namespace DAL.Repositoies
 {
     public class HoaDonRepository : IHoaDon
     {
-        private readonly DBContext dbContext;
+        readonly DBContext dbContext;
 
         public HoaDonRepository(DBContext context)
         {

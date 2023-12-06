@@ -8,19 +8,21 @@ using System.Threading.Tasks;
 using DAL.Interface;
 using Xceed.Words.NET;
 using Xceed.Document.NET;
+using DAL.Repositoies;
+using DAL.Context;
 
 namespace BUS
 {
     public class HoaDonService
     {
-        private readonly IHoaDon hoaDonRepository;
-        private readonly IKhachHang khachHangRepository;
+        static IHoaDon hoaDonRepository;
+        static IKhachHang khachHangRepository;
+        private static DBContext context;
 
         // Constructor để inject dependency
-        public HoaDonService(IHoaDon hoaDonRepo, IKhachHang khachHangRepository)
+        static HoaDonService()
         {
-            hoaDonRepository = hoaDonRepo;
-            this.khachHangRepository = khachHangRepository;
+            hoaDonRepository = new HoaDonRepository(context);
         }
 
         public List<HoaDon> LayDanhSachHoaDon()

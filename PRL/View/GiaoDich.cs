@@ -17,14 +17,14 @@ namespace PRL.View
     public partial class GiaoDich : Form
     {
         //private readonly HoaDonService hoaDonService;
-        private static IHoaDon hoaDonRepo;
-        private static IKhachHang khachHangRepository;
-        HoaDonService hoaDonService = new HoaDonService(hoaDonRepo, khachHangRepository);
+        readonly HoaDonService hoaDonService;
+        List<HoaDon>? hoaDonList = null;
 
 
         public GiaoDich()
         {
             InitializeComponent();
+            hoaDonService = new HoaDonService();
         }
         private void btn_TimKiemHoaDon_Click(object sender, EventArgs e)
         {

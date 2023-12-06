@@ -523,6 +523,7 @@
             // 
             // tabControl1
             // 
+            tabControl1.Anchor = AnchorStyles.None;
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage3);

@@ -204,10 +204,10 @@
             // 
             // panel_Body
             // 
+            panel_Body.Anchor = AnchorStyles.None;
             panel_Body.BackColor = Color.Ivory;
             panel_Body.BackgroundImage = (Image)resources.GetObject("panel_Body.BackgroundImage");
             panel_Body.BackgroundImageLayout = ImageLayout.Stretch;
-            panel_Body.Dock = DockStyle.Fill;
             panel_Body.Location = new Point(159, 38);
             panel_Body.Name = "panel_Body";
             panel_Body.Size = new Size(1100, 588);
