@@ -50,10 +50,10 @@
             txttimKiem = new TextBox();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
+            comboBox1 = new ComboBox();
+            label7 = new Label();
             textBox1 = new TextBox();
             txt_caTap = new Label();
-            label7 = new Label();
-            comboBox1 = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dg_PT).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
@@ -194,6 +194,7 @@
             btn_Update.Text = "Update";
             btn_Update.TextAlign = ContentAlignment.MiddleRight;
             btn_Update.UseVisualStyleBackColor = true;
+            btn_Update.Click += btn_Update_Click;
             // 
             // btn_Delete
             // 
@@ -205,6 +206,7 @@
             btn_Delete.Text = "Delete";
             btn_Delete.TextAlign = ContentAlignment.MiddleRight;
             btn_Delete.UseVisualStyleBackColor = true;
+            btn_Delete.Click += btn_Delete_Click;
             // 
             // btn_Add
             // 
@@ -216,6 +218,7 @@
             btn_Add.Text = "Add";
             btn_Add.TextAlign = ContentAlignment.MiddleRight;
             btn_Add.UseVisualStyleBackColor = true;
+            btn_Add.Click += btn_Add_Click;
             // 
             // btn_Search
             // 
@@ -225,6 +228,7 @@
             btn_Search.TabIndex = 24;
             btn_Search.Text = "Tìm kiếm";
             btn_Search.UseVisualStyleBackColor = true;
+            btn_Search.Click += btn_Search_Click;
             // 
             // txttimKiem
             // 
@@ -276,6 +280,24 @@
             panel1.Size = new Size(907, 477);
             panel1.TabIndex = 29;
             // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Active", "Free" });
+            comboBox1.Location = new Point(700, 106);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(200, 23);
+            comboBox1.TabIndex = 32;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(604, 109);
+            label7.Name = "label7";
+            label7.Size = new Size(59, 15);
+            label7.TabIndex = 31;
+            label7.Text = "Trạng thái";
+            // 
             // textBox1
             // 
             textBox1.Location = new Point(700, 72);
@@ -291,24 +313,6 @@
             txt_caTap.Size = new Size(41, 15);
             txt_caTap.TabIndex = 29;
             txt_caTap.Text = "Ca tập";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(604, 109);
-            label7.Name = "label7";
-            label7.Size = new Size(59, 15);
-            label7.TabIndex = 31;
-            label7.Text = "Trạng thái";
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Active", "Free" });
-            comboBox1.Location = new Point(700, 106);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(200, 23);
-            comboBox1.TabIndex = 32;
             // 
             // PT
             // 
