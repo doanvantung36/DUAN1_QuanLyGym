@@ -1,4 +1,5 @@
 ﻿
+using DAL.DomainClass;
 using DAL.Interface;
 using System;
 using System.Collections.Generic;
@@ -10,37 +11,37 @@ namespace BUS.Service
 {
     public class ThanhToanSevice
     {
-        //private readonly IThanhToan thanhToanRepository;
+        private readonly IThanhToan thanhToanRepository;
 
         public ThanhToanSevice(IThanhToan repository)
         {
-            //thanhToanRepository = repository;
+            thanhToanRepository = repository;
         }
 
-        //public List<ThanhToan> LayDanhSachThanhToan()
-        //{
-        //    return thanhToanRepository.LayDanhSachThanhToan();
-        //}
+        public List<ThanhToan> LayDanhSachThanhToan()
+        {
+            return thanhToanRepository.LayDanhSachThanhToan();
+        }
 
-        //public ThanhToan LayThongTinThanhToan(string maThanhToan)
-        //{
-        //    return thanhToanRepository.LayThongTinThanhToan(maThanhToan);
-        //}
+        public ThanhToan LayThongTinThanhToan(string maThanhToan)
+        {
+            return thanhToanRepository.LayThongTinThanhToan(maThanhToan);
+        }
 
-        //public void ThemThanhToan(ThanhToan thanhToan)
-        //{
-        //    thanhToanRepository.ThemThanhToan(thanhToan);
-        //}
+        public void ThemThanhToan(ThanhToan thanhToan)
+        {
+            thanhToanRepository.ThemThanhToan(thanhToan);
+        }
 
-        //public void CapNhatThanhToan(ThanhToan thanhToan)
-        //{
-        //    thanhToanRepository.CapNhatThanhToan(thanhToan);
-        //}
+        public void CapNhatThanhToan(ThanhToan thanhToan)
+        {
+            thanhToanRepository.CapNhatThanhToan(thanhToan);
+        }
 
-        //public void XoaThanhToan(string maThanhToan)
-        //{
-        //    thanhToanRepository.XoaThanhToan(maThanhToan);
-        //}
+        public void XoaThanhToan(string maThanhToan)
+        {
+            thanhToanRepository.XoaThanhToan(maThanhToan);
+        }
 
     }
 }

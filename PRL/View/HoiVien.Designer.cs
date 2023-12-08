@@ -52,7 +52,6 @@
             label2 = new Label();
             label1 = new Label();
             tbHopDong = new TabPage();
-            cb_maDichVu = new ComboBox();
             btn_Update_HopDong = new Button();
             btn_Delete_HopDong = new Button();
             btn_Add_HopDong = new Button();
@@ -63,7 +62,6 @@
             date_NgayDangKi = new DateTimePicker();
             txt_TenHoiVien = new TextBox();
             txt_MaHopDong = new TextBox();
-            label13 = new Label();
             label12 = new Label();
             label11 = new Label();
             label10 = new Label();
@@ -318,7 +316,6 @@
             // 
             // tbHopDong
             // 
-            tbHopDong.Controls.Add(cb_maDichVu);
             tbHopDong.Controls.Add(btn_Update_HopDong);
             tbHopDong.Controls.Add(btn_Delete_HopDong);
             tbHopDong.Controls.Add(btn_Add_HopDong);
@@ -329,7 +326,6 @@
             tbHopDong.Controls.Add(date_NgayDangKi);
             tbHopDong.Controls.Add(txt_TenHoiVien);
             tbHopDong.Controls.Add(txt_MaHopDong);
-            tbHopDong.Controls.Add(label13);
             tbHopDong.Controls.Add(label12);
             tbHopDong.Controls.Add(label11);
             tbHopDong.Controls.Add(label10);
@@ -341,15 +337,6 @@
             tbHopDong.TabIndex = 1;
             tbHopDong.Text = "Hợp đồng";
             tbHopDong.UseVisualStyleBackColor = true;
-            // 
-            // cb_maDichVu
-            // 
-            cb_maDichVu.FormattingEnabled = true;
-            cb_maDichVu.Items.AddRange(new object[] { "Dịch vụ 1", "Dịch vụ 2", "Dịch Vụ 3" });
-            cb_maDichVu.Location = new Point(485, 6);
-            cb_maDichVu.Name = "cb_maDichVu";
-            cb_maDichVu.Size = new Size(284, 23);
-            cb_maDichVu.TabIndex = 28;
             // 
             // btn_Update_HopDong
             // 
@@ -407,6 +394,7 @@
             // 
             // dtGrit_HopDong
             // 
+            dtGrit_HopDong.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtGrit_HopDong.BackgroundColor = SystemColors.ControlLightLight;
             dtGrit_HopDong.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtGrit_HopDong.Location = new Point(0, 171);
@@ -421,38 +409,29 @@
             // 
             date_NgayHetHan.Location = new Point(92, 100);
             date_NgayHetHan.Name = "date_NgayHetHan";
-            date_NgayHetHan.Size = new Size(285, 23);
+            date_NgayHetHan.Size = new Size(677, 23);
             date_NgayHetHan.TabIndex = 13;
             // 
             // date_NgayDangKi
             // 
             date_NgayDangKi.Location = new Point(92, 68);
             date_NgayDangKi.Name = "date_NgayDangKi";
-            date_NgayDangKi.Size = new Size(284, 23);
+            date_NgayDangKi.Size = new Size(677, 23);
             date_NgayDangKi.TabIndex = 12;
             // 
             // txt_TenHoiVien
             // 
             txt_TenHoiVien.Location = new Point(92, 36);
             txt_TenHoiVien.Name = "txt_TenHoiVien";
-            txt_TenHoiVien.Size = new Size(284, 23);
+            txt_TenHoiVien.Size = new Size(677, 23);
             txt_TenHoiVien.TabIndex = 8;
             // 
             // txt_MaHopDong
             // 
             txt_MaHopDong.Location = new Point(92, 6);
             txt_MaHopDong.Name = "txt_MaHopDong";
-            txt_MaHopDong.Size = new Size(284, 23);
+            txt_MaHopDong.Size = new Size(677, 23);
             txt_MaHopDong.TabIndex = 7;
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Location = new Point(393, 14);
-            label13.Name = "label13";
-            label13.Size = new Size(86, 15);
-            label13.TabIndex = 4;
-            label13.Text = "Dịch vụ đi kèm";
             // 
             // label12
             // 
@@ -545,13 +524,11 @@
         private DateTimePicker date_NgayDangKi;
         private TextBox txt_TenHoiVien;
         private TextBox txt_MaHopDong;
-        private Label label13;
         private Label label12;
         private Label label11;
         private Label label10;
         private Label label9;
         private TextBox tb_DiaChi;
         private Label label7;
-        private ComboBox cb_maDichVu;
     }
 }

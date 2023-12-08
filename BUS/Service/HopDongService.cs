@@ -1,5 +1,5 @@
 ﻿using BUS.IService;
-
+using DAL.DomainClass;
 using DAL.Interface;
 using DAL.Repositoies;
 using System;
@@ -10,38 +10,38 @@ using System.Threading.Tasks;
 
 namespace BUS.Service
 {
-    public class HopDongService : IHopDongService
+    public class HopDongService 
     {
-        //private readonly IHopDong _hopDongRepo;
+        private readonly IHopDong _hopDongRepo;
 
         public HopDongService(IHopDong hopDongRepo)
         {
-            //_hopDongRepo = hopDongRepo;
+            _hopDongRepo = hopDongRepo;
         }
 
-        //public List<HopDong> GetAll()
-        //{
-        //    return _hopDongRepo.GetAll();
-        //}
+        public List<HopDong> GetAll()
+        {
+            return _hopDongRepo.GetAll();
+        }
 
-        //public void Add(HopDong hopDong)
-        //{
-        //    _hopDongRepo.Create(hopDong);
-        //}
+        public void Add(HopDong hopDong)
+        {
+            _hopDongRepo.Create(hopDong);
+        }
 
-        //public void Update(HopDong hopDong)
-        //{
-        //    _hopDongRepo.Update(hopDong);
-        //}
+        public void Update(HopDong hopDong)
+        {
+            _hopDongRepo.Update(hopDong);
+        }
 
-        //public void Delete(string maHopDong)
-        //{
-        //    _hopDongRepo.Delete(maHopDong);
-        //}
+        public void Delete(string maHopDong)
+        {
+            _hopDongRepo.Delete(maHopDong);
+        }
 
-        //public HopDong GetById(string maHopDong)
-        //{
-        //    return _hopDongRepo.GetByMa(maHopDong);
-        //}
+        public HopDong GetById(string maHopDong)
+        {
+            return _hopDongRepo.GetByMa(maHopDong);
+        }
     }
 }

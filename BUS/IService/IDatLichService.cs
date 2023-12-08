@@ -1,4 +1,5 @@
 ﻿
+using DAL.DomainClass;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace BUS.IService
 {
     public interface IDatLichService
     {
-        //public List<DatLich> GetAllDatLich();
-        //public bool AddDatLich(DatLich datLich);
-        //public bool DeleteHuyLich(string huyLichId);
+        public List<DatLich> GetAllDatLich();
+        public bool AddDatLich(DatLich datLich);
+        public bool DeleteHuyLich(string huyLichId);
     }
 }

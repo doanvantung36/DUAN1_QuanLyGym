@@ -1,5 +1,5 @@
 ﻿using BUS.Service;
-
+using DAL.DomainClass;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,37 +14,37 @@ namespace PRL.View
 {
     public partial class DangNhap : Form
     {
-        //private readonly UserService _userService;
+        private readonly UserService _userService;
 
-        public DangNhap(/*UserService userService*/)
+        public DangNhap(UserService userService)
         {
             InitializeComponent();
-            //_userService = userService;
+            _userService = userService;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            //if (_userService == null)
-            //{
-            //    // Thông báo hoặc xử lý khi _userService chưa được thiết lập
-            //    MessageBox.Show("UserService chưa được thiết lập");
-            //    return;
-            //}
-            //string username = txtID.Text;
-            //string phone = "";
-            //string password = txtPassword.Text;
+            if (_userService == null)
+            {
+                // Thông báo hoặc xử lý khi _userService chưa được thiết lập
+                MessageBox.Show("UserService chưa được thiết lập");
+                return;
+            }
+            string username = txtID.Text;
+            string phone = "";
+            string password = txtPassword.Text;
 
-            //User user = _userService.UserLogin(username, phone, password);
-            //if (user != null)
-            //{
-            //    TrangChu trangChuForm = new TrangChu(user, _userService);
-            //    trangChuForm.Show();
-            //    this.Hide();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Đăng nhập không thành công");
-            //}
+            User user = _userService.UserLogin(username, phone, password);
+            if (user != null)
+            {
+                TrangChu trangChuForm = new TrangChu(user, _userService);
+                trangChuForm.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Đăng nhập không thành công");
+            }
         }
 
         private void btnThoat_Click(object sender, EventArgs e)

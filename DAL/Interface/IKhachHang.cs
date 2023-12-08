@@ -1,4 +1,5 @@
 ﻿
+using DAL.DomainClass;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,11 @@ namespace DAL.Interface
 {
     public interface IKhachHang
     {
-        //List<KhachHang> GetAll();
-        //KhachHang GetById(string maKhachHang);
-        //void Create(KhachHang khachHang);
-        //void Update(KhachHang khachHang);
-        //void Delete(string maKhachHang);
-        //List<KhachHang> SearchKhachHangs(string keyword);
+        List<KhachHang> GetAll();
+        KhachHang GetById(string maKhachHang);
+        void Create(KhachHang khachHang);
+        void Update(KhachHang khachHang);
+        void Delete(string maKhachHang);
+        List<KhachHang> SearchKhachHangs(string keyword);
     }
 }

@@ -1,4 +1,5 @@
 ﻿
+using DAL.DomainClass;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +10,12 @@ namespace DAL.Interface
 {
     public interface IUser
     {
-        //public User GetByID(string id);
-        //public User GetByPhone(string name);
-        //User GetUserByUsername(string username);
-        //public void Add(User user);
-        //public void Update(User user);
-        //public void Delete(string user);
-        //IEnumerable<User> GetAll();
+        public User GetByID(string id);
+        public User GetByPhone(string name);
+        User GetUserByUsername(string username);
+        public void Add(User user);
+        public void Update(User user);
+        public void Delete(string user);
+        IEnumerable<User> GetAll();
     }
 }
