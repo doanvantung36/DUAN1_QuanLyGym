@@ -16,7 +16,7 @@ namespace PRL.View
     {
         private readonly UserService _userService;
         private readonly HoaDonService _hoaDon;
-        
+
         public DangNhap(UserService userService)
         {
             InitializeComponent();
@@ -51,6 +51,11 @@ namespace PRL.View
         private void btnThoat_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void link_QuenMMK_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
         }
     }
 }

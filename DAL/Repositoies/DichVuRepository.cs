@@ -18,23 +18,23 @@ namespace DAL.Repositoies
             dbContext = context;
         }
 
-        public List<DichVu> LayDanhSachDichVu()
+        public List<DichVu> GetAll()
         {
             return dbContext.DichVus.ToList();
         }
 
-        public DichVu LayThongTinDichVu(string maDichVu)
+        public DichVu GetByID(string maDichVu)
         {
             return dbContext.DichVus.FirstOrDefault(d => d.MaDichVu == maDichVu);
         }
 
-        public void ThemDichVu(DichVu dichVu)
+        public void Add(DichVu dichVu)
         {
             dbContext.DichVus.Add(dichVu);
             dbContext.SaveChanges();
         }
 
-        public void CapNhatDichVu(DichVu dichVu)
+        public void Update(DichVu dichVu)
         {
             var existingDichVu = dbContext.DichVus.Find(dichVu.MaDichVu);
             if (existingDichVu != null)
@@ -48,7 +48,7 @@ namespace DAL.Repositoies
             }
         }
 
-        public void XoaDichVu(string maDichVu)
+        public void Delete(string maDichVu)
         {
             var dichVuToDelete = dbContext.DichVus.Find(maDichVu);
             if (dichVuToDelete != null)

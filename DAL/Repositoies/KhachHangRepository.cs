@@ -19,6 +19,7 @@ namespace DAL.Repositoies
             _context = context;
         }
 
+
         public KhachHang LayThongTinKhachHang(string maKhachHang)
         {
             return _context.KhachHangs.FirstOrDefault(kh => kh.MaKhachHang == maKhachHang);
@@ -59,6 +60,33 @@ namespace DAL.Repositoies
         {
             // Triển khai truy vấn để lấy thông tin khách hàng dựa trên mã khách hàng
             return _context.KhachHangs.FirstOrDefault(kh => kh.MaKhachHang == maKhachHang);
+        }
+
+        public List<KhachHang> LayDanhSachKhachHang()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CapNhatKhachHang(KhachHang khachHang)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<KhachHang> GetAll()
+        {
+            return _context.KhachHangs.ToList();
+        }
+        public bool Exists(string maKhachHang)
+        {
+            return _context.KhachHangs.Any(kh => kh.MaKhachHang == maKhachHang);
+        }
+
+        public List<KhachHang> Search(string tuKhoa)
+        {
+            // Tìm kiếm theo tên khách hàng hoặc mã khách hàng
+            return _context.KhachHangs
+                .Where(kh => kh.TenKhachHang.Contains(tuKhoa) || kh.MaKhachHang.Contains(tuKhoa))
+                .ToList();
         }
     }
 }

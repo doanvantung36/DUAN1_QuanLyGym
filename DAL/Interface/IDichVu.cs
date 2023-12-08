@@ -10,10 +10,10 @@ namespace DAL.Interface
     public interface IDichVu
     {
         // Định nghĩa các phương thức (nếu có) mà các lớp sẽ triển khai
-        List<DichVu> LayDanhSachDichVu();
-        DichVu LayThongTinDichVu(string maDichVu);
-        void ThemDichVu(DichVu dichVu);
-        void CapNhatDichVu(DichVu dichVu);
-        void XoaDichVu(string maDichVu);
+        List<DichVu> GetAll();
+        DichVu GetByID(string maDichVu);
+        void Add(DichVu dichVu);
+        void Update(DichVu dichVu);
+        void Delete(string maDichVu);
     }
 }

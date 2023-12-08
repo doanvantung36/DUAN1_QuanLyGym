@@ -11,7 +11,8 @@ namespace DAL.Interface
     {
         // Lấy thông tin khách hàng dựa trên mã khách hàng
         KhachHang LayThongTinKhachHang(string maKhachHang);
-
+        // Lấy tất cả thông tin khách hàng
+        List<KhachHang> GetAll();
         // Thêm mới khách hàng
         void ThemKhachHang(KhachHang khachHang);
 
@@ -21,5 +22,9 @@ namespace DAL.Interface
         // Xóa khách hàng
         void XoaKhachHang(string maKhachHang);
         KhachHang LayTheoMaKhachHang(string maKhachHang);
+        List<KhachHang> LayDanhSachKhachHang();
+        void CapNhatKhachHang(KhachHang khachHang);
+        bool Exists(string maKhachHang);
+        List<KhachHang> Search(string tuKhoa);
     }
 }
