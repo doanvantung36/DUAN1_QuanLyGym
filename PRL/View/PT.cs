@@ -36,5 +36,10 @@ namespace PRL.View
         {
 
         }
+
+        private void dg_PT_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

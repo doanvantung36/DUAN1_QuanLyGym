@@ -8,43 +8,8 @@ using System.Threading.Tasks;
 
 namespace BUS
 {
-    public class LịchLamViecService : ILichLamViec
+    public class LịchLamViecService 
     {
-        private readonly ILichLamViec _lichLamViecRepo;
-
-        public LịchLamViecService(ILichLamViec lichLamViecRepo)
-        {
-            _lichLamViecRepo = lichLamViecRepo;
-        }
-
-        public List<LichLamViec> GetAll()
-        {
-            return _lichLamViecRepo.GetAll();
-        }
-
-        public LichLamViec GetById(int id)
-        {
-            return _lichLamViecRepo.GetById(id);
-        }
-
-        public void Add(LichLamViec lichLamViec)
-        {
-            _lichLamViecRepo.Add(lichLamViec);
-        }
-
-        public void Update(LichLamViec lichLamViec)
-        {
-            _lichLamViecRepo.Update(lichLamViec);
-        }
-
-        public void Delete(int id)
-        {
-            _lichLamViecRepo.Delete(id);
-        }
-
-        public List<LichLamViec> Search(Func<LichLamViec, bool> condition)
-        {
-            return _lichLamViecRepo.Search(condition);
-        }
+        
     }
 }

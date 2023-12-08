@@ -24,9 +24,9 @@ namespace DAL.Repositoies
             return _context.LichLamViecs.ToList();
         }
 
-        public LichLamViec GetById(int id)
+        public LichLamViec GetById(string maLich)
         {
-            return _context.LichLamViecs.Find(id);
+            return _context.LichLamViecs.FirstOrDefault(llv => llv.MaLich == maLich);
         }
 
         public void Add(LichLamViec lichLamViec)
@@ -35,25 +35,27 @@ namespace DAL.Repositoies
             _context.SaveChanges();
         }
 
-        public void Delete(int id)
+        public void Update(LichLamViec lichLamViec)
         {
-            var lichLamViec = _context.LichLamViecs.Find(id);
+            var existingLichLamViec = _context.LichLamViecs.Find(lichLamViec.MaLich);
+            if (existingLichLamViec != null)
+            {
+                existingLichLamViec.Ca = lichLamViec.Ca;
+                existingLichLamViec.NgayTap = lichLamViec.NgayTap;
+                existingLichLamViec.TrangThai = lichLamViec.TrangThai;
+
+                _context.SaveChanges();
+            }
+        }
+
+        public void Delete(string maLich)
+        {
+            var lichLamViec = _context.LichLamViecs.Find(maLich);
             if (lichLamViec != null)
             {
                 _context.LichLamViecs.Remove(lichLamViec);
                 _context.SaveChanges();
             }
-        }
-
-        public void Update(LichLamViec lichLamViec)
-        {
-            _context.Entry(lichLamViec).State = EntityState.Modified;
-            _context.SaveChanges();
-        }
-
-        public List<LichLamViec> Search(Func<LichLamViec, bool> condition)
-        {
-            return _context.LichLamViecs.Where(condition).ToList();
         }
 
     }

@@ -132,6 +132,7 @@
             dg_PT.RowTemplate.Height = 25;
             dg_PT.Size = new Size(891, 275);
             dg_PT.TabIndex = 10;
+            dg_PT.CellClick += dg_PT_CellClick;
             // 
             // txt_MaPT
             // 
