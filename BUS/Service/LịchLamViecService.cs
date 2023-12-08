@@ -1,4 +1,4 @@
-﻿using DAL.DomainClass;
+﻿
 using DAL.Interface;
 using System;
 using System.Collections.Generic;
@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BUS
+namespace BUS.Service
 {
-    public class LịchLamViecService 
+    public class LịchLamViecService
     {
-        
+
     }
 }

@@ -1,8 +1,9 @@
 ﻿using BUS;
 using BUS.IService;
-using DAL.Context;
-using DAL.DomainClass;
+using BUS.Service;
+
 using DAL.Repositoies;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,260 +18,184 @@ namespace PRL.View
 {
     public partial class HoiVien : Form
     {
-        KhachHangRepository _khachHangRepository;
-        HopDongRepoSitory _hopDongRepository;
-        PTRepository _ptRepository;
-        DichVuRepository _dichVuRepository;
-
+        HoiVienService _khachHangService;
+        HopDongRepoSitory _HopDongRepoSitory;
+        DichVuRepository _DichVuRepository;
+        //DBContext _dbContext;
         public HoiVien()
         {
             InitializeComponent();
-            _khachHangRepository = new KhachHangRepository(new DBContext()); // Cần điều chỉnh nếu có constructor khác
-            _hopDongRepository = new HopDongRepoSitory(new DBContext());
-            _dichVuRepository = new DichVuRepository(new DBContext());
-            _ptRepository = new PTRepository(new DBContext());
-            dataGridView1.CellClick += dataGridView1_CellClick;
-           
-            LoadData();
+            //_khachHangService = new HoiVienService(new KhachHangRepository(new DBContext()));
+            //_HopDongRepoSitory = new HopDongRepoSitory(new DBContext());
+            //_DichVuRepository = new DichVuRepository(new DBContext());
+            //_dbContext = new DBContext();
+
             LoadDataHopDong();
         }
         private void LoadDataHopDong()
         {
-            try
-            {
-                // Lấy danh sách hợp đồng từ repository
-                List<HopDong> danhSachHopDong = _hopDongRepository.GetAll();
+            //// Lấy danh sách dịch vụ từ repository hoặc service
+            //List<DichVu> dichVuList = _DichVuRepository.GetAll();
 
-                // Tạo DataTable để chứa dữ liệu từ danh sách hợp đồng
-                DataTable dataTable = new DataTable();
+            //// Đổ dữ liệu vào ComboBox
+            //cb_maDichVu.DataSource = dichVuList;
+            //cb_maDichVu.DisplayMember = "TenDichVu"; // Tên thuộc tính hiển thị
+            //cb_maDichVu.ValueMember = "MaDichVu"; // Tên thuộc tính giá trị
+            //// Xóa dữ liệu cũ
+            //dtGrit_HopDong.Rows.Clear();
+            //dtGrit_HopDong.Columns.Clear();
 
-                // Thêm cột số thứ tự vào DataTable
-                dataTable.Columns.Add("STT", typeof(int));
+            //// Đặt tên và thêm cột
+            //dtGrit_HopDong.Columns.Add("STT", "STT");
+            //dtGrit_HopDong.Columns.Add("MaHopDong", "Mã Hợp Đồng");
+            //dtGrit_HopDong.Columns.Add("MaKhachHang", "Mã Khách Hàng");
+            //dtGrit_HopDong.Columns.Add("MaDichVu", "Mã Dịch Vụ");
+            //dtGrit_HopDong.Columns.Add("NgayDangKi", "Ngày Đăng Kí");
+            //dtGrit_HopDong.Columns.Add("NgayKetThuc", "Ngày Kết Thúc");
 
-                // Thêm các cột khác từ đối tượng HopDong vào DataTable
-                dataTable.Columns.Add("Mã Hợp Đồng", typeof(string));
-                dataTable.Columns.Add("Khách Hàng", typeof(string));
-                dataTable.Columns.Add("Phòng Tập", typeof(string));
-                dataTable.Columns.Add("Dịch Vụ", typeof(string));
-                dataTable.Columns.Add("Ngày Đăng Kí", typeof(DateTime));
-                dataTable.Columns.Add("Ngày Kết Thúc", typeof(DateTime));
+            //// Lấy danh sách hợp đồng từ repository hoặc service
+            //List<HopDong> hopDongList = _HopDongRepoSitory.GetAll();
 
-                // Đổ dữ liệu từ danh sách hợp đồng vào DataTable
-                int stt = 1;
-                foreach (var hopDong in danhSachHopDong)
-                {
-                    DataRow row = dataTable.NewRow();
-                    row["STT"] = stt++;
-                    row["Mã Hợp Đồng"] = hopDong.MaHopDong;
-
-                    // Lấy tên khách hàng từ repository hoặc service
-                    var khachHang = _khachHangRepository.LayTheoMaKhachHang(hopDong.MaKhachHang);
-                    row["Khách Hàng"] = khachHang?.TenKhachHang;
-
-                    // Lấy tên PT từ repository hoặc service
-                    var pt = _ptRepository.GetById(hopDong.MaPt);
-                    row["Phòng Tập"] = pt?.TenPt;
-
-                    // Lấy tên dịch vụ từ repository hoặc service
-                    var dichVu = _dichVuRepository.GetByID(hopDong.MaDichVu);
-                    row["Dịch Vụ"] = dichVu?.TenDichVu;
-
-                    row["Ngày Đăng Kí"] = hopDong.NgayDangKi;
-                    row["Ngày Kết Thúc"] = hopDong.NgayKetThuc;
-
-                    dataTable.Rows.Add(row);
-                }
-
-                // Gán DataTable làm nguồn dữ liệu cho DataGridView HopDong
-                dtGrit_HopDong.DataSource = dataTable;
-                // Cấu hình DataGridView
-                // ...Cấu hình các cột tương tự như bạn đã làm ở phần LoadDataGridHoaDon...
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Đã xảy ra lỗi khi load dữ liệu Hợp đồng: " + ex.Message);
-            }
+            //// Thêm dữ liệu vào DataGridView
+            //int stt = 1;
+            //foreach (var hopDong in hopDongList)
+            //{
+            //    dtGrit_HopDong.Rows.Add(stt++, hopDong.MaHopDong, hopDong.MaKhachHang, hopDong.MaDichVu, hopDong.NgayDangKi, hopDong.NgayKetThuc);
+            //}
         }
         public void LoadData()
         {
-            try
-            {
-                // Lấy danh sách khách hàng từ repository
-                List<KhachHang> danhSachKhachHang = _khachHangRepository.GetAll();
+            //List<KhachHang> khachHangs = _khachHangService.GetAllKhachHangs();
 
-                // Tạo DataTable để chứa dữ liệu từ danh sách khách hàng
-                DataTable dataTable = new DataTable();
+            //// Xóa tất cả các cột trước khi thêm mới
+            //dataGridView1.Columns.Clear();
 
-                // Thêm cột số thứ tự vào DataTable
-                dataTable.Columns.Add("STT", typeof(int));
+            //// Tạo cột STT
+            //dataGridView1.Columns.Add("STT", "STT");
 
-                // Thêm các cột khác từ đối tượng KhachHang vào DataTable
-                dataTable.Columns.Add("Mã Khách Hàng", typeof(string));
-                dataTable.Columns.Add("Tên Khách Hàng", typeof(string));
-                dataTable.Columns.Add("Ngày Sinh", typeof(DateTime));
-                dataTable.Columns.Add("Giới Tính", typeof(string));
-                dataTable.Columns.Add("Địa Chỉ", typeof(string));
-                dataTable.Columns.Add("Số Điện Thoại", typeof(string));
-                dataTable.Columns.Add("Email", typeof(string));
+            //// Tạo và đặt tên cho các cột khác
+            //dataGridView1.Columns.Add("MaKhachHang", "Mã Khách Hàng");
+            //dataGridView1.Columns.Add("TenKhachHang", "Tên Khách Hàng");
+            //dataGridView1.Columns.Add("NgaySinh", "Ngày Sinh");
+            //dataGridView1.Columns.Add("GioiTinh", "Giới Tính");
+            //dataGridView1.Columns.Add("DiaChi", "Địa Chỉ");
+            //dataGridView1.Columns.Add("SoDienThoai", "Số Điện Thoại");
+            //dataGridView1.Columns.Add("Email", "Email");
 
-                // Đổ dữ liệu từ danh sách khách hàng vào DataTable
-                int stt = 1;
-                foreach (var khachHang in danhSachKhachHang)
-                {
-                    DataRow row = dataTable.NewRow();
-                    row["STT"] = stt++;
-                    row["Mã Khách Hàng"] = khachHang.MaKhachHang;
-                    row["Tên Khách Hàng"] = khachHang.TenKhachHang;
-                    row["Ngày Sinh"] = khachHang.NgaySinh;
-                    row["Giới Tính"] = khachHang.GioiTinh;
-                    row["Địa Chỉ"] = khachHang.DiaChi;
-                    row["Số Điện Thoại"] = khachHang.SoDienThoai;
-                    row["Email"] = khachHang.Email;
+            //// Đặt tên cho cột STT
+            //dataGridView1.Columns[0].HeaderText = "STT";
 
-                    dataTable.Rows.Add(row);
-                }
-
-                // Gán DataTable làm nguồn dữ liệu cho DataGridView
-                // DT_KhachHang là tên DataGridView của bạn
-                dataGridView1.DataSource = dataTable;
-
-                // Cấu hình DataGridView
-                // ...Cấu hình các cột tương tự như bạn đã làm ở phần LoadDataGridHoaDon...
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message);
-            }
+            //// Đổ dữ liệu vào DataGridView
+            //for (int i = 0; i < khachHangs.Count; i++)
+            //{
+            //    dataGridView1.Rows.Add(i + 1, khachHangs[i].MaKhachHang, khachHangs[i].TenKhachHang,
+            //                                   khachHangs[i].NgaySinh, khachHangs[i].GioiTinh, khachHangs[i].DiaChi,
+            //                                   khachHangs[i].SoDienThoai, khachHangs[i].Email);
+            //}
         }
         private void btn_Add_Click(object sender, EventArgs e)
         {
-            try
-            {
-                // Tạo một đối tượng KhachHang mới từ thông tin trên các ô nhập liệu
-                KhachHang khachHang = new KhachHang
-                {
-                    MaKhachHang = tb_MaHoiVien.Text,
-                    TenKhachHang = txt_TenHoiVien.Text,
-                    NgaySinh = date_NgaySinh.Value,
-                    GioiTinh = cb_GioiTinh.SelectedItem?.ToString(),
-                    DiaChi = tb_DiaChi.Text,
-                    SoDienThoai = tb_SoDienThoai.Text,
-                    Email = tb_Email.Text
-                };
+            //// Lấy thông tin từ các controls trên form chính
+            //string maKhachHang = tb_MaHoiVien.Text;
+            //string tenKhachHang = tb_TenHoiVien.Text;
+            //DateTime ngaySinh = date_NgaySinh.Value;
+            //string gioiTinh = cb_GioiTinh.SelectedItem.ToString();
+            //string soDienThoai = tb_SoDienThoai.Text;
+            //string email = tb_Email.Text;
+            //string diaChi = tb_DiaChi.Text;
 
-                // Thêm khách hàng vào database
-                _khachHangRepository.ThemKhachHang(khachHang);
+            //// Thực hiện thêm mới khách hàng trong CSDL
+            //_khachHangService.CreateKhachHang(new KhachHang
+            //{
+            //    MaKhachHang = maKhachHang,
+            //    TenKhachHang = tenKhachHang,
+            //    NgaySinh = ngaySinh,
+            //    GioiTinh = gioiTinh,
+            //    SoDienThoai = soDienThoai,
+            //    Email = email,
+            //    DiaChi = diaChi
+            //});
 
-                // Load lại dữ liệu sau khi thêm mới
-                LoadData();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Đã xảy ra lỗi khi thêm mới khách hàng: " + ex.Message);
-            }
+            //// Cập nhật lại dữ liệu trên DataGridView
+            //LoadData();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            try
-            {
-                // Lấy mã khách hàng từ ô Mã Khách Hàng
-                string maKhachHang = tb_MaHoiVien.Text;
+            //if (dataGridView1.SelectedRows.Count > 0)
+            //{
+            //    // Lấy ra mã khách hàng của dòng được chọn
+            //    string maKhachHang = dataGridView1.SelectedRows[0].Cells["MaKhachHang"].Value.ToString();
 
-                // Xóa khách hàng từ database
-                _khachHangRepository.XoaKhachHang(maKhachHang);
+            //    // Hiển thị thông báo xác nhận việc xóa
+            //    DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa khách hàng này?", "Xác Nhận Xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                // Load lại dữ liệu sau khi xóa
-                LoadData();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Đã xảy ra lỗi khi xóa khách hàng: " + ex.Message);
-            }
+            //    if (result == DialogResult.Yes)
+            //    {
+            //        // Thực hiện xóa khách hàng trong CSDL
+            //        _khachHangService.DeleteKhachHang(maKhachHang);
+
+            //        // Cập nhật lại dữ liệu trên DataGridView
+            //        LoadData();
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Vui lòng chọn một khách hàng để xóa.", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //}
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            try
-            {
-                // Lấy mã khách hàng từ ô Mã Khách Hàng
-                string maKhachHang = tb_MaHoiVien.Text;
+            //if (dataGridView1.SelectedRows.Count > 0)
+            //{
+            //    // Lấy mã khách hàng từ dòng được chọn
+            //    string maKhachHang = dataGridView1.SelectedRows[0].Cells["MaKhachHang"].Value.ToString();
 
-                // Kiểm tra xem mã khách hàng có tồn tại hay không
-                if (_khachHangRepository.Exists(maKhachHang))
-                {
-                    // Lấy thông tin khách hàng cần cập nhật từ các ô nhập liệu
-                    KhachHang khachHangUpdate = new KhachHang
-                    {
-                        MaKhachHang = tb_MaHoiVien.Text,
-                        TenKhachHang = txt_TenHoiVien.Text,
-                        NgaySinh = date_NgaySinh.Value,
-                        GioiTinh = cb_GioiTinh.SelectedItem?.ToString(),
-                        DiaChi = tb_DiaChi.Text,
-                        SoDienThoai = tb_SoDienThoai.Text,
-                        Email = tb_Email.Text
-                    };
+            //    // Lấy đối tượng KhachHang từ cơ sở dữ liệu
+            //    var existingKhachHang = _dbContext.KhachHangs.FirstOrDefault(kh => kh.MaKhachHang == maKhachHang);
 
-                    // Cập nhật thông tin khách hàng trong database
-                    _khachHangRepository.CapNhatKhachHang(khachHangUpdate);
+            //    if (existingKhachHang != null)
+            //    {
+            //        // Cập nhật thông tin trên đối tượng đã tồn tại
+            //        existingKhachHang.TenKhachHang = tb_TenHoiVien.Text;
+            //        existingKhachHang.NgaySinh = date_NgaySinh.Value;
+            //        existingKhachHang.GioiTinh = cb_GioiTinh.SelectedItem?.ToString();
+            //        existingKhachHang.SoDienThoai = tb_SoDienThoai.Text;
+            //        existingKhachHang.Email = tb_Email.Text;
+            //        existingKhachHang.DiaChi = tb_DiaChi.Text;
 
-                    // Load lại dữ liệu sau khi cập nhật
-                    LoadData();
-                }
-                else
-                {
-                    MessageBox.Show("Không tìm thấy khách hàng có mã: " + maKhachHang);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Đã xảy ra lỗi khi cập nhật khách hàng: " + ex.Message);
-            }
+            //        // Lưu thay đổi vào cơ sở dữ liệu
+            //        _dbContext.SaveChanges();
+
+            //        // Load lại dữ liệu sau khi cập nhật
+
+
+            //        // Hiển thị thông báo cập nhật thành công
+            //        MessageBox.Show("Cập nhật thành công.", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Không tìm thấy khách hàng để cập nhật.", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Vui lòng chọn một khách hàng để cập nhật.", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //}
+            //LoadData();
         }
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                // Lấy thông tin từ ô tìm kiếm (nếu có)
-                string tuKhoa = txtTimKiem.Text;
+            //// Lấy keyword từ TextBox tìm kiếm
+            //string keyword = txtTimKiem.Text;
 
-                // Tìm kiếm theo tên khách hàng hoặc mã khách hàng
-                List<KhachHang> ketQuaTimKiem = _khachHangRepository.Search(tuKhoa);
+            //// Gọi phương thức tìm kiếm từ service hoặc repository
+            //List<KhachHang> ketQuaTimKiem = _khachHangService.SearchKhachHangs(keyword);
 
-                // Hiển thị kết quả tìm kiếm lên DataGridView
-                DataTable dataTable = new DataTable();
-                dataTable.Columns.Add("STT", typeof(int));
-                dataTable.Columns.Add("Mã Khách Hàng", typeof(string));
-                dataTable.Columns.Add("Tên Khách Hàng", typeof(string));
-                dataTable.Columns.Add("Ngày Sinh", typeof(DateTime));
-                dataTable.Columns.Add("Giới Tính", typeof(string));
-                dataTable.Columns.Add("Địa Chỉ", typeof(string));
-                dataTable.Columns.Add("Số Điện Thoại", typeof(string));
-                dataTable.Columns.Add("Email", typeof(string));
-
-                int stt = 1;
-                foreach (var khachHang in ketQuaTimKiem)
-                {
-                    DataRow row = dataTable.NewRow();
-                    row["STT"] = stt++;
-                    row["Mã Khách Hàng"] = khachHang.MaKhachHang;
-                    row["Tên Khách Hàng"] = khachHang.TenKhachHang;
-                    row["Ngày Sinh"] = khachHang.NgaySinh;
-                    row["Giới Tính"] = khachHang.GioiTinh;
-                    row["Địa Chỉ"] = khachHang.DiaChi;
-                    row["Số Điện Thoại"] = khachHang.SoDienThoai;
-                    row["Email"] = khachHang.Email;
-
-                    dataTable.Rows.Add(row);
-                }
-
-                dataGridView1.DataSource = dataTable;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Đã xảy ra lỗi khi tìm kiếm khách hàng: " + ex.Message);
-            }
+            //// Hiển thị kết quả tìm kiếm lên DataGridView
+            //HienThiDuLieuLenDataGridView(ketQuaTimKiem);
         }
 
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
@@ -280,33 +205,88 @@ namespace PRL.View
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count)
-            {
-                DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
+            //if (e.RowIndex >= 0)
+            //{
+            //    // Lấy dữ liệu từ dòng được click
+            //    DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
 
-                // Lấy giá trị từ các ô trong hàng đó
-                string maKhachHang = selectedRow.Cells["Mã Khách Hàng"].Value?.ToString();
-                string? tenKhachHang = selectedRow.Cells["Tên Khách Hàng"].Value?.ToString();
-                DateTime? ngaySinh = selectedRow.Cells["Ngày Sinh"].Value as DateTime?;
-                string gioiTinh = selectedRow.Cells["Giới Tính"].Value?.ToString();
-                string diaChi = selectedRow.Cells["Địa Chỉ"].Value?.ToString();
-                string soDienThoai = selectedRow.Cells["Số Điện Thoại"].Value?.ToString();
-                string email = selectedRow.Cells["Email"].Value?.ToString();
+            //    // Kiểm tra giá trị của các ô trước khi sử dụng
+            //    string maKhachHang = row.Cells["MaKhachHang"].Value?.ToString();
+            //    string tenKhachHang = row.Cells["TenKhachHang"].Value?.ToString();
+            //    DateTime? ngaySinh = row.Cells["NgaySinh"].Value as DateTime?;
+            //    string gioiTinh = row.Cells["GioiTinh"].Value?.ToString();
+            //    string soDienThoai = row.Cells["SoDienThoai"].Value?.ToString();
+            //    string email = row.Cells["Email"].Value?.ToString();
+            //    string diaChi = row.Cells["DiaChi"].Value?.ToString();
 
-                // Hiển thị thông tin lên các ô tương ứng
-                tb_MaHoiVien.Text = maKhachHang;
-                txt_TenHoiVien.Text = tenKhachHang;
-                date_NgaySinh.Value = ngaySinh ?? DateTime.MinValue; // Ngày sinh
-                cb_GioiTinh.SelectedItem = gioiTinh; // Giới tính
-                tb_DiaChi.Text = diaChi;
-                tb_SoDienThoai.Text = soDienThoai;
-                tb_Email.Text = email;
-            }
+            //    // Hiển thị thông tin trên các TextBox tương ứng
+            //    tb_MaHoiVien.Text = maKhachHang;
+            //    tb_TenHoiVien.Text = tenKhachHang;
+            //    date_NgaySinh.Value = ngaySinh ?? DateTime.Now; // Gán giá trị mặc định nếu là null
+            //    cb_GioiTinh.SelectedItem = gioiTinh;
+            //    tb_SoDienThoai.Text = soDienThoai;
+            //    tb_Email.Text = email;
+            //    tb_DiaChi.Text = diaChi;
+            //}
         }
+        private void HienThiDuLieuLenDataGridView(/*List<KhachHang> danhSachKhachHang*/)
+        {
+            //// Xóa dữ liệu hiện tại trên DataGridView
+            //dataGridView1.Rows.Clear();
 
+            //// Hiển thị dữ liệu mới lên DataGridView
+            //int stt = 1;
+            //foreach (var khachHang in danhSachKhachHang)
+            //{
+            //    dataGridView1.Rows.Add(stt++, khachHang.MaKhachHang, khachHang.TenKhachHang, khachHang.NgaySinh, khachHang.GioiTinh, khachHang.SoDienThoai, khachHang.Email, khachHang.DiaChi);
+            //}
+        }
         private void btn_Add_HopDong_Click(object sender, EventArgs e)
         {
+            //// Kiểm tra các trường thông tin đã được nhập đầy đủ chưa
+            //if (string.IsNullOrEmpty(txt_MaHopDong.Text) || string.IsNullOrEmpty(txt_TenHoiVien.Text) ||
+            //    date_NgayDangKi.Value == null || date_NgayHetHan.Value == null || cb_maDichVu.SelectedItem == null)
+            //{
+            //    MessageBox.Show("Vui lòng nhập đầy đủ thông tin hợp đồng.", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
 
+            //// Lấy thông tin về dịch vụ từ ComboBox
+            //DichVu selectedDichVu = (DichVu)cb_maDichVu.SelectedItem;
+
+            //// Kiểm tra xem selectedDichVu có null hay không
+            //if (selectedDichVu == null)
+            //{
+            //    MessageBox.Show("Vui lòng chọn một dịch vụ.", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
+
+            //// Tạo đối tượng HopDong từ các giá trị trong form
+            //HopDong newHopDong = new HopDong
+            //{
+            //    MaHopDong = txt_MaHopDong.Text,
+            //    MaKhachHang = txt_TenHoiVien.Text,
+            //    MaDichVu = selectedDichVu.MaDichVu,
+            //    NgayDangKi = date_NgayDangKi.Value,
+            //    NgayKetThuc = date_NgayHetHan.Value
+            //    // Set các thuộc tính từ các controls trên form
+            //};
+
+            //// Gọi phương thức Create từ repository
+            //_HopDongRepoSitory.Create(newHopDong);
+
+            //// Load lại dữ liệu sau khi thêm mới
+            //LoadData();
+
+            //// Hiển thị thông báo thêm mới thành công
+            //MessageBox.Show("Thêm mới hợp đồng thành công.", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            //// Đặt lại giá trị trống cho các controls sau khi thêm mới
+            //txt_MaHopDong.Text = "";
+            //txt_TenHoiVien.Text = "";
+            //date_NgayDangKi.Value = DateTime.Now;
+            //date_NgayHetHan.Value = DateTime.Now;
+            //cb_maDichVu.SelectedIndex = -1;
         }
 
         private void btn_Delete_HopDong_Click(object sender, EventArgs e)
@@ -326,23 +306,13 @@ namespace PRL.View
 
         private void dtGrit_HopDong_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dtGrit_HopDong.SelectedRows.Count > 0)
-            {
-                // Lấy giá trị từ các ô trong hàng đó
-                string maHopDong = dtGrit_HopDong.SelectedRows[0].Cells["Mã Hợp Đồng"].Value?.ToString();
-                string maKhachHang = dtGrit_HopDong.SelectedRows[0].Cells["Khách Hàng"].Value?.ToString();
-                string maDichVu = dtGrit_HopDong.SelectedRows[0].Cells["Dịch Vụ"].Value?.ToString();
-                DateTime ngayDangKi = (DateTime)dtGrit_HopDong.SelectedRows[0].Cells["Ngày Đăng Kí"].Value;
-                DateTime ngayKetThuc = (DateTime)dtGrit_HopDong.SelectedRows[0].Cells["Ngày Kết Thúc"].Value;
 
-                // Hiển thị thông tin lên các ô tương ứng
-                txt_MaHopDong.Text = maHopDong;
-                tb_MaHoiVien.Text = maKhachHang;
-                txt_DichVu.Text = maDichVu;
-                date_NgayDangKi.Value = ngayDangKi;
-                date_NgayHetHan.Value = ngayKetThuc;
-                // Các ô khác tương tự
-            }
+        }
+
+        private void HoiVien_Load(object sender, EventArgs e)
+        {
+            LoadData();
+            
         }
     }
 }

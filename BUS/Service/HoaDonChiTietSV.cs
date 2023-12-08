@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BUS
+namespace BUS.Service
 {
-    public class GiamGiaService
+    public class HoaDonChiTietSV
     {
     }
 }

@@ -11,7 +11,6 @@ namespace DAL.DomainClass
     {
         public Pt()
         {
-            HopDongs = new HashSet<HopDong>();
             LichLamViecs = new HashSet<LichLamViec>();
         }
 
@@ -36,8 +35,6 @@ namespace DAL.DomainClass
         [Unicode(false)]
         public string? Email { get; set; }
 
-        [InverseProperty("MaPtNavigation")]
-        public virtual ICollection<HopDong> HopDongs { get; set; }
         [InverseProperty("MaPtNavigation")]
         public virtual ICollection<LichLamViec> LichLamViecs { get; set; }
     }

@@ -1,5 +1,5 @@
-﻿using BUS;
-using DAL.DomainClass;
+﻿using BUS.Service;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +15,7 @@ namespace PRL.View
     public partial class ThietBi : Form
     {
         public ThietBiServices _thietBiServices = new();
-        List<DAL.DomainClass.ThietBi> _thietBiList;
+        //List<DAL.DomainClass.ThietBi> _thietBiList;
         int idCellClick;
         public ThietBi()
         {

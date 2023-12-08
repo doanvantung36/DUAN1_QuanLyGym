@@ -1,5 +1,5 @@
-﻿using BUS;
-using DAL.DomainClass;
+﻿using BUS.Service;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,18 +14,16 @@ namespace PRL.View
 {
     public partial class TrangChu : Form
     {
-        private readonly User _Logined;
+        //private readonly User _Logined;
         private readonly UserService _UserService;
         private Button selectedButton;
         private UserService userService;
-        private HoaDonService _hoaDonService;
 
-        public TrangChu(User loggedInUser, UserService userService, HoaDonService hoaDonService)
+        public TrangChu(/*User loggedInUser, UserService userService*/)
         {
             InitializeComponent();
-            _Logined = loggedInUser;
-            _UserService = userService;
-            _hoaDonService = hoaDonService;
+            //_Logined = loggedInUser;
+            //_UserService = userService;
         }
         private Form curentChillForm;
 
@@ -99,35 +97,35 @@ namespace PRL.View
 
         private void btnKhuyenMai_Click(object sender, EventArgs e)
         {
-            if (_UserService.Rules(_Logined, "NhanVien"))
-            {
-                MessageBox.Show("Bạn không có quyền truy cập vào mục này");
-            }
-            else
-            {
-                OpentChillForm(new KhuyenMai());
-                txtChucNang.Text = btnKhuyenMai.Text;
-                SetButtonColor(btnKhuyenMai);
-            }
+            //if (_UserService.Rules(_Logined, "NhanVien"))
+            //{
+            //    MessageBox.Show("Bạn không có quyền truy cập vào mục này");
+            //}
+            //else
+            //{
+            //    OpentChillForm(new KhuyenMai());
+            //    txtChucNang.Text = btnKhuyenMai.Text;
+            //    SetButtonColor(btnKhuyenMai);
+            //}
         }
 
         private void btnNhanVien_Click(object sender, EventArgs e)
         {
-            if (_UserService.Rules(_Logined, "NhanVien"))
-            {
-                MessageBox.Show("Bạn không có quyền truy cập vào mục này");
-            }
-            else
-            {
-                OpentChillForm(new NhanVien());
-                txtChucNang.Text = btn_HoiVien.Text;
-                SetButtonColor(btnNhanVien);
-            }
+            //if (_UserService.Rules(_Logined, "NhanVien"))
+            //{
+            //    MessageBox.Show("Bạn không có quyền truy cập vào mục này");
+            //}
+            //else
+            //{
+            //    OpentChillForm(new NhanVien());
+            //    txtChucNang.Text = btn_HoiVien.Text;
+            //    SetButtonColor(btnNhanVien);
+            //}
         }
 
         private void btnDangXuat_Click(object sender, EventArgs e)
         {
-            DangNhap dangNhap = new DangNhap(userService);
+            DangNhap dangNhap = new DangNhap(/*userService*/);
             this.Hide();
             dangNhap.Show();
         }

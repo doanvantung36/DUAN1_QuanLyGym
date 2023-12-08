@@ -52,6 +52,7 @@
             label2 = new Label();
             label1 = new Label();
             tbHopDong = new TabPage();
+            cb_maDichVu = new ComboBox();
             btn_Update_HopDong = new Button();
             btn_Delete_HopDong = new Button();
             btn_Add_HopDong = new Button();
@@ -60,7 +61,6 @@
             dtGrit_HopDong = new DataGridView();
             date_NgayHetHan = new DateTimePicker();
             date_NgayDangKi = new DateTimePicker();
-            txt_DichVu = new TextBox();
             txt_TenHoiVien = new TextBox();
             txt_MaHopDong = new TextBox();
             label13 = new Label();
@@ -251,6 +251,7 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.BackgroundColor = SystemColors.ButtonHighlight;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(0, 207);
@@ -317,6 +318,7 @@
             // 
             // tbHopDong
             // 
+            tbHopDong.Controls.Add(cb_maDichVu);
             tbHopDong.Controls.Add(btn_Update_HopDong);
             tbHopDong.Controls.Add(btn_Delete_HopDong);
             tbHopDong.Controls.Add(btn_Add_HopDong);
@@ -325,7 +327,6 @@
             tbHopDong.Controls.Add(dtGrit_HopDong);
             tbHopDong.Controls.Add(date_NgayHetHan);
             tbHopDong.Controls.Add(date_NgayDangKi);
-            tbHopDong.Controls.Add(txt_DichVu);
             tbHopDong.Controls.Add(txt_TenHoiVien);
             tbHopDong.Controls.Add(txt_MaHopDong);
             tbHopDong.Controls.Add(label13);
@@ -340,6 +341,15 @@
             tbHopDong.TabIndex = 1;
             tbHopDong.Text = "Hợp đồng";
             tbHopDong.UseVisualStyleBackColor = true;
+            // 
+            // cb_maDichVu
+            // 
+            cb_maDichVu.FormattingEnabled = true;
+            cb_maDichVu.Items.AddRange(new object[] { "Dịch vụ 1", "Dịch vụ 2", "Dịch Vụ 3" });
+            cb_maDichVu.Location = new Point(485, 6);
+            cb_maDichVu.Name = "cb_maDichVu";
+            cb_maDichVu.Size = new Size(284, 23);
+            cb_maDichVu.TabIndex = 28;
             // 
             // btn_Update_HopDong
             // 
@@ -421,13 +431,6 @@
             date_NgayDangKi.Size = new Size(284, 23);
             date_NgayDangKi.TabIndex = 12;
             // 
-            // txt_DichVu
-            // 
-            txt_DichVu.Location = new Point(485, 6);
-            txt_DichVu.Name = "txt_DichVu";
-            txt_DichVu.Size = new Size(284, 23);
-            txt_DichVu.TabIndex = 9;
-            // 
             // txt_TenHoiVien
             // 
             txt_TenHoiVien.Location = new Point(92, 36);
@@ -474,9 +477,9 @@
             label10.AutoSize = true;
             label10.Location = new Point(7, 44);
             label10.Name = "label10";
-            label10.Size = new Size(70, 15);
+            label10.Size = new Size(69, 15);
             label10.TabIndex = 1;
-            label10.Text = "Tên hội viên";
+            label10.Text = "Mã hội viên";
             // 
             // label9
             // 
@@ -496,6 +499,7 @@
             Controls.Add(tabControl1);
             Name = "HoiVien";
             Text = "QuanLyHoiVien";
+            Load += HoiVien_Load;
             tabControl1.ResumeLayout(false);
             tbThongTin.ResumeLayout(false);
             tbThongTin.PerformLayout();
@@ -539,7 +543,6 @@
         private DataGridView dtGrit_HopDong;
         private DateTimePicker date_NgayHetHan;
         private DateTimePicker date_NgayDangKi;
-        private TextBox txt_DichVu;
         private TextBox txt_TenHoiVien;
         private TextBox txt_MaHopDong;
         private Label label13;
@@ -549,5 +552,6 @@
         private Label label9;
         private TextBox tb_DiaChi;
         private Label label7;
+        private ComboBox cb_maDichVu;
     }
 }

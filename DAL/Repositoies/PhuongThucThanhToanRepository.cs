@@ -1,5 +1,4 @@
-﻿using DAL.Context;
-using DAL.DomainClass;
+﻿
 using DAL.Interface;
 using System;
 using System.Collections.Generic;
@@ -11,49 +10,49 @@ namespace DAL.Repositoies
 {
     public class PhuongThucThanhToanRepository : IPhuongThucThanhToan
     {
-        private readonly DBContext dbContext;
+        //private readonly DBContext dbContext;
 
-        public PhuongThucThanhToanRepository(DBContext context)
-        {
-            dbContext = context;
-        }
+        //public PhuongThucThanhToanRepository(DBContext context)
+        //{
+        //    dbContext = context;
+        //}
 
-        public List<PhuongThucThanhToan> LayDanhSachPhuongThucThanhToan()
-        {
-            return dbContext.PhuongThucThanhToans.ToList();
-        }
+        //public List<PhuongThucThanhToan> LayDanhSachPhuongThucThanhToan()
+        //{
+        //    return dbContext.PhuongThucThanhToans.ToList();
+        //}
 
-        public PhuongThucThanhToan LayThongTinPhuongThucThanhToan(string maPhuongThuc)
-        {
-            return dbContext.PhuongThucThanhToans.FirstOrDefault(p => p.MaPhuongThuc == maPhuongThuc);
-        }
+        //public PhuongThucThanhToan LayThongTinPhuongThucThanhToan(string maPhuongThuc)
+        //{
+        //    return dbContext.PhuongThucThanhToans.FirstOrDefault(p => p.MaPhuongThuc == maPhuongThuc);
+        //}
 
-        public void ThemPhuongThucThanhToan(PhuongThucThanhToan phuongThuc)
-        {
-            dbContext.PhuongThucThanhToans.Add(phuongThuc);
-            dbContext.SaveChanges();
-        }
+        //public void ThemPhuongThucThanhToan(PhuongThucThanhToan phuongThuc)
+        //{
+        //    dbContext.PhuongThucThanhToans.Add(phuongThuc);
+        //    dbContext.SaveChanges();
+        //}
 
-        public void CapNhatPhuongThucThanhToan(PhuongThucThanhToan phuongThuc)
-        {
-            var existingPhuongThuc = dbContext.PhuongThucThanhToans.Find(phuongThuc.MaPhuongThuc);
-            if (existingPhuongThuc != null)
-            {
-                existingPhuongThuc.TenPhuongThuc = phuongThuc.TenPhuongThuc;
-                existingPhuongThuc.TrangThai = phuongThuc.TrangThai;
+        //public void CapNhatPhuongThucThanhToan(PhuongThucThanhToan phuongThuc)
+        //{
+        //    var existingPhuongThuc = dbContext.PhuongThucThanhToans.Find(phuongThuc.MaPhuongThuc);
+        //    if (existingPhuongThuc != null)
+        //    {
+        //        existingPhuongThuc.TenPhuongThuc = phuongThuc.TenPhuongThuc;
+        //        existingPhuongThuc.TrangThai = phuongThuc.TrangThai;
 
-                dbContext.SaveChanges();
-            }
-        }
+        //        dbContext.SaveChanges();
+        //    }
+        //}
 
-        public void XoaPhuongThucThanhToan(string maPhuongThuc)
-        {
-            var phuongThucToDelete = dbContext.PhuongThucThanhToans.Find(maPhuongThuc);
-            if (phuongThucToDelete != null)
-            {
-                dbContext.PhuongThucThanhToans.Remove(phuongThucToDelete);
-                dbContext.SaveChanges();
-            }
-        }
+        //public void XoaPhuongThucThanhToan(string maPhuongThuc)
+        //{
+        //    var phuongThucToDelete = dbContext.PhuongThucThanhToans.Find(maPhuongThuc);
+        //    if (phuongThucToDelete != null)
+        //    {
+        //        dbContext.PhuongThucThanhToans.Remove(phuongThucToDelete);
+        //        dbContext.SaveChanges();
+        //    }
+        //}
     }
 }

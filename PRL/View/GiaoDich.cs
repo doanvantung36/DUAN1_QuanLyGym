@@ -1,5 +1,5 @@
 ﻿using BUS;
-using DAL.DomainClass;
+
 using DAL.Interface;
 using DAL.Repositoies;
 using System;
