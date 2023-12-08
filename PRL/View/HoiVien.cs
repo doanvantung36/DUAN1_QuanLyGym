@@ -280,28 +280,27 @@ namespace PRL.View
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count > 0)
+            if (e.RowIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count)
             {
-                // Lấy hàng đầu tiên được chọn
-                //DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+                DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
 
-                //// Lấy giá trị từ các ô trong hàng đó
-                //string maKhachHang = selectedRow.Cells["MaKhachHang"].Value?.ToString();
-                //string tenKhachHang = selectedRow.Cells["TenKhachHang"].Value?.ToString();
-                //DateTime? ngaySinh = selectedRow.Cells["NgaySinh"].Value as DateTime?;
-                //string gioiTinh = selectedRow.Cells["GioiTinh"].Value?.ToString();
-                //string diaChi = selectedRow.Cells["DiaChi"].Value?.ToString();
-                //string soDienThoai = selectedRow.Cells["SoDienThoai"].Value?.ToString();
-                //string email = selectedRow.Cells["Email"].Value?.ToString();
+                // Lấy giá trị từ các ô trong hàng đó
+                string maKhachHang = selectedRow.Cells["Mã Khách Hàng"].Value?.ToString();
+                string? tenKhachHang = selectedRow.Cells["Tên Khách Hàng"].Value?.ToString();
+                DateTime? ngaySinh = selectedRow.Cells["Ngày Sinh"].Value as DateTime?;
+                string gioiTinh = selectedRow.Cells["Giới Tính"].Value?.ToString();
+                string diaChi = selectedRow.Cells["Địa Chỉ"].Value?.ToString();
+                string soDienThoai = selectedRow.Cells["Số Điện Thoại"].Value?.ToString();
+                string email = selectedRow.Cells["Email"].Value?.ToString();
 
-                //// Hiển thị thông tin lên các ô tương ứng
-                //tb_MaHoiVien.Text = maKhachHang;
-                //txt_TenHoiVien.Text = tenKhachHang;
-                //date_NgaySinh.Value = ngaySinh ?? DateTime.MinValue; // Ngày sinh
-                //cb_GioiTinh.SelectedItem = gioiTinh; // Giới tính
-                //tb_DiaChi.Text = diaChi;
-                //tb_SoDienThoai.Text = soDienThoai;
-                //tb_Email.Text = email; 
+                // Hiển thị thông tin lên các ô tương ứng
+                tb_MaHoiVien.Text = maKhachHang;
+                txt_TenHoiVien.Text = tenKhachHang;
+                date_NgaySinh.Value = ngaySinh ?? DateTime.MinValue; // Ngày sinh
+                cb_GioiTinh.SelectedItem = gioiTinh; // Giới tính
+                tb_DiaChi.Text = diaChi;
+                tb_SoDienThoai.Text = soDienThoai;
+                tb_Email.Text = email;
             }
         }
 
